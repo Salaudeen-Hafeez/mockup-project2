@@ -10,11 +10,12 @@
 <body>
 
   <div>
-    <div>
-      <h2>NCDC form for tracking COVID-19
-        incoming patients.</h2></div>
     <form id="form1">
-      <div class="input-container">
+      <div>
+        <h2>NCDC form for tracking COVID-19
+          incoming patients.</h2></div>
+      <div class="wrapper" id="wrapper">
+      <div class="input-container" id="inpCont">
         <div class="input-field">
           <label for="firstName" class="col-4">First Name</label>
           <input type="text" class="col-8" id="firstName1" required>
@@ -26,23 +27,23 @@
         </div>
 
         <div class="input-field">
-          <label for="emailAdress" class="col-4">Email Address</label>
+          <label for="email" class="col-4">Email Address</label>
           <input type="email" class="col-8" id="email1" required>
         </div>
 
         <div class="select-option">
           <label for="gender" class="col-4">Gender</label>
-          <select name="gender" id="gender1" placeholder="gender" required>
-            <option>Male</option>
-            <option>Female</option>
+          <select name="gender" id="gender" form="form1" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
           </select>
         </div>
 
         <div class="checkBox">
-          <input type="checkbox" id="checkBox1" >
+          <input type="checkbox" id="checkBox">
           <label for="checkBox">Recently come in to Nigeria within the last 14 days?</label>
         </div>
-          <button class="btn" id="submit">Submit</button>
+          <button class="btn" id="submit" onclick="addNewRow()">Submit</button>
         </div>
 
       <div class="data-container">
@@ -57,67 +58,13 @@
               <th></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="tb">
 
           </tbody>
         </table>
       </div>
+    </div>
     </form>
-    <div>
-      <h2>You can edit and update your record below.</h2></div>
-  <form id="form2">
-    <div class="input-container">
-      <div class="input-field">
-        <label for="firstName" class="col-4">First Name</label>
-        <input type="text" class="col-8" id="firstName2" placeholder="New_First_Name" required>
-      </div>
-
-      <div class="input-field">
-        <label for="lastName" class="col-4">Last Name</label>
-        <input type="text" class="col-8" id="lastName2"  placeholder="New_Last_Name" required>
-      </div>
-
-      <div class="input-field">
-        <label for="emailAdress" class="col-4">Email Address</label>
-        <input type="email" class="col-8" id="email2"  placeholder="New_Email_Address" required>
-      </div>
-
-      <div class="select-option">
-        <label for="gender" class="col-4">Gender</label>
-        <select name="gender" id="gender2" required>
-          <option>Male</option>
-          <option>Female</option>
-        </select>
-      </div>
-
-      <div class="checkBox">
-        <input type="checkbox" id="checkBox2" >
-        <label for="checkBox">Recently come in to Nigeria within the last 14 days?</label>
-      </div>
-
-      <button class="btn" id="update">Update</button>
-
-    </div>
-
-    <div class="data-container">
-      <table id="dataTable2">
-         <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email Address</th>
-            <th>Gender</th>
-            <th>Came to Nigeria within the last 14 days?</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          
-        </tbody>
-      </table>
-    </div>
-  </form>
-  </div>
   </div>
   <script src="index.js"></script>
 </body>
