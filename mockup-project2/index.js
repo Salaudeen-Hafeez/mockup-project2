@@ -54,10 +54,10 @@ function insertNewRow(data){
     cell4.innerHTML = `<a href="#">${data.toggle}</a>`;
     cell5 = newRow.insertCell(4);
     cell5.innerHTML = `<input type="button" value="Edit" onclick="onEdit(this)" 
-    style="border-radius:5px;font-size:12px;cursor:pointer" >`;
+    style="border-radius:5px;font-size:10px;cursor:pointer" >`;
     cell6 = newRow.insertCell(5);
     cell6.innerHTML = `<input type="button" value="Delete" onclick="onDelete(this)" 
-    style="border-radius:5px;font-size:12px;cursor:pointer">`;
+    style="border-radius:5px;font-size:10px;cursor:pointer">`;
 }
 
 
