@@ -2,6 +2,8 @@
     box-sizing: border-box;
 }
 body{
+    padding: 0;
+    margin: 0;
     display: flex;
     justify-content: center;
     background-color:  #dcdee76b;
@@ -87,19 +89,20 @@ th, td{
         align-items: center;
         border-radius: 5px;
         box-shadow: #efefef;
-        padding: 0px;
+        padding: 0;
         min-height: 70%;
         width: 100%;
     }
     h2{
         font-size: 15px;
+        margin: 5px;
     }
     .wrapper{
         background-color: #b7f5b30a;
-        border: 3px solid #efefef;
+        border: 1px solid #efefef;
         width: 100%;
         margin: 0;
-        padding: 0;
+        padding: 5px;
         min-height: 600px;
     }
     .input-container{
@@ -108,7 +111,7 @@ th, td{
         font-size: 10px;
         width: 100%;
         margin-top: 20px;
-        padding: 12px;
+        padding: 8px;
         height: auto;
         z-index: -1;
     }
