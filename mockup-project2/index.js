@@ -1,72 +1,79 @@
+const form = document.getElementById('form1');
+const formElements = form.querySelectorAll('div');
+const inputs = form.querySelectorAll('input');
+const dataTable = document.getElementById('dataTable1');
+const submitBtn = document.getElementById('submitBtn');
+const updateBtn = document.getElementById('updateBtn');
+const tableBody = document.getElementById('tableBody');
 var checkBox = document.getElementById('checkBox');
-var form = document.getElementById('form1');
 var selectedRow = null;
 
-
-//Adding the new row and setting the input boxes to empty
-function addNewRow(e){
-    const myInput = getInputData();
-    if (myInput['firstname'] === ''){
-        return
-    }else if (myInput['lastname'] === ''){  
-        return
-    }else if (myInput['email'] === ''){
-        return
-    }else if (myInput['gender'] === ''){
-        return
-    } else{
+/*Checking which button is clicked (submit or update) 
+and calling the respective function*/
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (e.submitter.id == 'submitBtn'){
+        const myInput = getInputData();
         insertNewRow(myInput);
-        resetForm();
-    }  
-}
+        resetForm();   
+        dataTable.removeAttribute('hidden');
+        formElements[9].setAttribute('hidden', 'true');
 
-/*Collecting the text from the input and checking 
+    }else{
+        updateRow();
+        resetForm();
+        selectedRow = null;
+    }
+});
+
+/*Collecting the text from the input fields and checking 
 whether the chackbox is checked or not*/
 function getInputData(){
-    var myInput = {},
-        toggle;
+    var myInput = {}, toggle;
+
     if (checkBox.checked){
         toggle = 'Yes';
+
     }else{
         toggle = 'No';
     }
-    myInput['firstname'] = document.getElementById('firstName1').value;
-    myInput['lastname'] = document.getElementById('lastName1').value;
-    myInput['email'] = document.getElementById('email1').value;
-    myInput['gender'] = document.getElementById('gender').value;
+
+    myInput['firstname'] = inputs[0].value;
+    myInput['lastname'] = inputs[1].value;
+    myInput['email'] = inputs[2].value;
+    myInput['gend'] = inputs[3].value;
     myInput['toggle'] = toggle;
+
     return myInput;      
 }
 
 
-/*Inserting an empty row into the first table 
+/*Inserting an empty row into the first Div 
 and fill with the collected data*/
 function insertNewRow(data){
-    var table = document.getElementById('dataTable1').getElementsByTagName('tbody')[0];
-    var newRow = table.insertRow(table.length);
-    cell1 = newRow.insertCell(0);
-    cell1.innerHTML = data.firstname +' '+ data.lastname;
-    cell2 = newRow.insertCell(1);
-    cell2.innerHTML = data.email;
-    cell3 = newRow.insertCell(2);
-    cell3.innerHTML = data.gender;
-    cell4 = newRow.insertCell(3);
-    cell4.innerHTML = `<a href="#">${data.toggle}</a>`;
-    cell5 = newRow.insertCell(4);
-    cell5.innerHTML = `<input type="button" value="Edit" onclick="onEdit(this)" 
-    style="border-radius:5px;font-size:10px;cursor:pointer" >`;
-    cell6 = newRow.insertCell(5);
-    cell6.innerHTML = `<input type="button" value="Delete" onclick="onDelete(this)" 
-    style="border-radius:5px;font-size:10px;cursor:pointer">`;
+    const table = dataTable.getElementsByTagName('tbody')[0];
+    const newRow = table.insertRow(table.length);
+
+    newRow.insertCell(0).innerHTML = data.firstname +' '+ data.lastname;
+    newRow.insertCell(1).innerHTML = data.email;
+    newRow.insertCell(2).innerHTML = data.gend;
+    newRow.insertCell(3).innerHTML = `<a href="#">${data.toggle}</a>`;
+    newRow.insertCell(4).innerHTML = `
+    <input type="button" value="Edit" class="editBtn" onclick="onEdit(this)" 
+    >`;
+    newRow.insertCell(5).innerHTML = `
+    <input type="button" value="Delete" class="deleteBtn" onclick="onDelete(this)" 
+    >`;
 }
 
 
 //Resetting tthe input boxes after submission 
 function resetForm(e){
     checkBox.checked = false;
-    document.getElementById('firstName1').value = '';
-    document.getElementById('lastName1').value = '';
-    document.getElementById('email1').value = '';
+    inputs[0].value = '';
+    inputs[1].value = '';
+    inputs[2].value = '';
+    inputs[3].value = '';
     
 }
 
@@ -74,48 +81,50 @@ function resetForm(e){
 //Fill the update form with the selected row data 
 function onEdit(td){
     selectedRow = td.parentElement.parentElement;
-    document.getElementById('submit').setAttribute('onclick', 'updateRow()');
-    document.getElementById('submit').innerHTML = 'Update';
-    document.getElementById('firstName1').setAttribute('placeholder', 'New_First_name');
-    document.getElementById('lastName1').setAttribute('placeholder', 'New_Last_name');
-    document.getElementById('email1').setAttribute('placeholder', 'new@email.com');
-    document.getElementById('wrapper').setAttribute
+
+    var fullName = selectedRow.cells[0].innerHTML;
+    var splitName = fullName.split(' ');
+
+    inputs[0].value = splitName[0];
+    inputs[1].value = splitName[1];
+    inputs[2].value = selectedRow.cells[1].innerHTML;
+    inputs[3].value = selectedRow.cells[2].innerHTML;
+
+    updateBtn.removeAttribute('hidden');
+    submitBtn.setAttribute('hidden', 'true');
+    formElements[1].setAttribute
     ('style', 'background:repeating-linear-gradient(white 3px, lightgray 5px)');
-    document.getElementById('tb').setAttribute('style', 'background-color: white');
-    document.getElementById('inpCont').setAttribute('style', 'background-color: white');
+    tableBody.setAttribute('style', 'background-color: #b7f5b30a');
+    formElements[2].setAttribute('style', 'background-color: #b7f5b30a');
     
 }
 
 //Delete selected row
 function onDelete(td){
     row = td.parentElement.parentElement;
-    document.getElementById('dataTable1').deleteRow(row.rowIndex);
+    dataTable.deleteRow(row.rowIndex);
+    const tb = tableBody.childElementCount;
+    if (tb == 0){
+        dataTable.setAttribute('hidden', 'true');
+        formElements[9].removeAttribute('hidden');
+    }
+    //console.log(row.rowIndex);
 }
 
 //Update the selected row and reset the input form
-function updateRow(e){
+function updateRow(){
   const myInput = getInputData();
-  if (myInput['firstname'] === ''){
-      return
-  }else if (myInput['lastname'] === ''){  
-      return
-  }else if (myInput['email'] === ''){
-      return
-  }else if (myInput['gender'] === ''){
-      return
-  }else{
         var data2 = getInputData();
-        selectedRow.cells[0].innerHTML = data2['firstname'] +' '+ data2['lastname'];
+
+        selectedRow.cells[0].innerHTML = 
+        data2['firstname'] +' '+ data2['lastname'];
         selectedRow.cells[1].innerHTML = data2['email'];
-        selectedRow.cells[2].innerHTML = data2['gender'];
-        selectedRow.cells[3].innerHTML = `<a href="#">${data2['toggle']}</a>`;
-        resetForm();
-        selectedRow = null;
-        document.getElementById('submit').setAttribute('onclick', 'addNewRow()');
-        document.getElementById('submit').innerHTML = 'Submit';
-        document.getElementById('firstName1').removeAttribute('placeholder');
-        document.getElementById('lastName1').removeAttribute('placeholder');
-        document.getElementById('email1').removeAttribute('placeholder');
-        document.getElementById('wrapper').removeAttribute('style');
-    }
+        selectedRow.cells[2].innerHTML = data2['gend'];
+        selectedRow.cells[3].innerHTML = `
+        <a href="#">${data2['toggle']}</a>
+        `;
+
+        submitBtn.removeAttribute('hidden');
+        updateBtn.setAttribute('hidden', 'true');
+        formElements[1].removeAttribute('style');
 }

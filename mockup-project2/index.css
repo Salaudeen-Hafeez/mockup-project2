@@ -1,5 +1,7 @@
 *{
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    
 }
 body{
     padding: 0;
@@ -29,7 +31,7 @@ form{
     min-height: 600px;
 }
 .input-container{
-    border: 1px solid darkgreen;
+    border: 1px solid darkgray;
     border-radius: 5px;
     font-size: 12px;
     width: 87%;
@@ -50,7 +52,7 @@ form{
     width: 68%;
     padding: 5px;
 }
-.select-option select{
+.select-option input{
     width: 10rem;
     }
 .btn{
@@ -61,6 +63,21 @@ form{
     width: 70px;
     padding: 2px;
 }
+#emptDiv h2{
+    text-align: center;
+    font-size: 35px;
+}
+#submitBtn:hover{
+    cursor: pointer;
+    background-color: darkgreen;
+    color: white;
+}
+#updateBtn:hover{
+    cursor: pointer;
+    background-color: darkgreen;
+    color: white;
+}
+
 .data-container{
     margin-top: 30px;
     width: 97%;
@@ -69,7 +86,7 @@ th{
     background-color: #efefef;
 }
 table, th, td{
-    border: 1px solid darkgreen;
+    border: 1px solid #486154;
     border-collapse: collapse;
     justify-content: center;
     font-size: 12px;
@@ -79,6 +96,32 @@ th, td{
     overflow-wrap: break-word;
     text-align: center;
     max-width: 150px;
+}
+tbody tr:hover{
+    background-color: #688068;
+    opacity: 0.7;
+    font-size: 15px;
+    color: white;
+}
+.editBtn{
+    border-radius: 5px;
+    font-size: 10px;
+    cursor: pointer;
+}
+.deleteBtn{
+    border-radius: 5px;
+    font-size: 10px;
+    cursor: pointer;
+}
+.editBtn:hover{
+    background-color: darkgreen;
+    color: white;
+    border-radius: 2px;
+}
+.deleteBtn:hover{
+    background-color: darkgreen;
+    color: white;
+    border-radius: 2px;
 }
 @media screen and (max-width: 544px) {
     form{
@@ -102,7 +145,7 @@ th, td{
         border: 1px solid #efefef;
         width: 100%;
         margin: 0;
-        padding: 5px;
+        padding: 8px;
         min-height: 600px;
     }
     .input-container{
@@ -142,27 +185,27 @@ th, td{
 
 @media screen and (max-width: 426px) {
     .select-option{
-        width: 69%;
+        width: 65.2%;
     }
-    .select-option select{
+    .select-option input{
         width: 9.1rem;
         }
 
 }
 @media screen and (max-width: 376px) {
     .select-option{
-        width: 73%;
+        width: 70.9%;
     }
-    .select-option select{
+    .select-option input{
         width: 9.1rem;
         }
 
 }
 @media screen and (max-width: 321px) {
     .select-option{
-        width: 80%;
+        width: 78.5%;
     }
-    .select-option select{
+    .select-option input{
         width: 9rem;
         }
 
