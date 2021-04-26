@@ -94,8 +94,8 @@ function onEdit(td){
     submitBtn.setAttribute('hidden', 'true');
     formElements[1].setAttribute
     ('style', 'background:repeating-linear-gradient(white 3px, lightgray 5px)');
-    tableBody.setAttribute('style', 'background-color: #b7f5b30a');
-    formElements[2].setAttribute('style', 'background-color: #b7f5b30a');
+    tableBody.setAttribute('style', 'background-color: white');
+    formElements[2].setAttribute('style', 'background-color: white');
     
 }
 
