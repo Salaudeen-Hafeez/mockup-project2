@@ -89,6 +89,12 @@ function onEdit(td){
     inputs[1].value = splitName[1];
     inputs[2].value = selectedRow.cells[1].innerHTML;
     inputs[3].value = selectedRow.cells[2].innerHTML;
+    var checkBoxValue = selectedRow.cells[3].getElementsByTagName('a');
+    if (checkBoxValue[0].innerHTML == 'Yes'){
+        checkBox.checked = true;
+    }else{
+        checkBox.checked = false;
+    };
 
     updateBtn.removeAttribute('hidden');
     submitBtn.setAttribute('hidden', 'true');
@@ -102,13 +108,18 @@ function onEdit(td){
 //Delete selected row
 function onDelete(td){
     row = td.parentElement.parentElement;
-    dataTable.deleteRow(row.rowIndex);
-    const tb = tableBody.childElementCount;
-    if (tb == 0){
-        dataTable.setAttribute('hidden', 'true');
-        formElements[9].removeAttribute('hidden');
+    var Confirm = confirm(`Are you sure to delete ${row.cells[0].innerHTML} record`)
+    if (!Confirm){
+        return
+    }else{
+        dataTable.deleteRow(row.rowIndex);
+        const tb = tableBody.childElementCount;
+        if (tb == 0){
+            dataTable.setAttribute('hidden', 'true');
+            formElements[9].removeAttribute('hidden');
+        }
+
     }
-    //console.log(row.rowIndex);
 }
 
 //Update the selected row and reset the input form
