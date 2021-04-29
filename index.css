@@ -27,7 +27,7 @@ form{
     padding: 20px;
     margin: 20px;
     width: 85%;
-    min-height: 600px;
+    min-height: 500px;
 }
 .input-container{
     border: 1px solid darkgray;
@@ -52,7 +52,7 @@ form{
     padding: 5px;
 }
 .select-option input{
-    width: 10rem;
+    width: 60.5%;
     }
 .btn{
     border-radius: 5px;
@@ -156,12 +156,6 @@ tbody tr:hover{
         height: auto;
         z-index: -1;
     }
-    .select-option{
-        width: 71.9%;
-    }
-    .select-option select{
-        width: 8.7rem;
-        }
     .btn{
         margin-left: 100px;
         font-size: 10px;
@@ -180,32 +174,12 @@ tbody tr:hover{
     }
     
 }
-
-@media screen and (max-width: 426px) {
-    .select-option{
-        width: 65.8%;
+@media screen and (max-width: 768px) {
+    .input-field{
+       height: 2rem;
     }
-    .select-option input{
-        width: 9.1rem;
-        }
-
-}
-@media screen and (max-width: 376px) {
-    .select-option{
-        width: 70.7%;
-    }
-    .select-option input{
-        width: 8.9rem;
-        }
-
 }
 @media screen and (max-width: 321px) {
-    .select-option{
-        width: 76.8%;
-    }
-    .select-option input{
-        width: 8.5rem;
-        }
     th, td{
       max-width: 90px;
       font-size: 9px;

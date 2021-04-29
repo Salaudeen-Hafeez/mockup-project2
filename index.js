@@ -33,11 +33,9 @@ function getInputData(){
 
     if (checkBox.checked){
         toggle = 'Yes';
-
     }else{
         toggle = 'No';
     }
-
     myInput['firstname'] = inputs[0].value;
     myInput['lastname'] = inputs[1].value;
     myInput['email'] = inputs[2].value;
@@ -45,7 +43,7 @@ function getInputData(){
     myInput['toggle'] = toggle;
 
     return myInput;      
-}
+};
 
 
 /*Inserting an empty row into the first Div 
@@ -64,7 +62,7 @@ function insertNewRow(data){
     newRow.insertCell(5).innerHTML = `
     <input type="button" value="Delete" class="deleteBtn" onclick="onDelete(this)" 
     >`;
-}
+};
 
 
 //Resetting tthe input boxes after submission 
@@ -75,7 +73,7 @@ function resetForm(e){
     inputs[2].value = '';
     inputs[3].value = '';
     
-}
+};
 
 
 //Fill the update form with the selected row data 
@@ -94,33 +92,34 @@ function onEdit(td){
         checkBox.checked = true;
     }else{
         checkBox.checked = false;
-    };
-
+    }
     updateBtn.removeAttribute('hidden');
     submitBtn.setAttribute('hidden', 'true');
     formElements[1].setAttribute
     ('style', 'background:repeating-linear-gradient(white 3px, lightgray 5px)');
     tableBody.setAttribute('style', 'background-color: white');
-    formElements[2].setAttribute('style', 'background-color: white');
-    
-}
+    formElements[2].setAttribute('style', 'background-color: white');    
+};
 
 //Delete selected row
 function onDelete(td){
-    row = td.parentElement.parentElement;
-    var Confirm = confirm(`Are you sure to delete ${row.cells[0].innerHTML} record`)
-    if (!Confirm){
-        return
+    if (selectedRow !== null){
+        alert('Kindly update the record');
     }else{
-        dataTable.deleteRow(row.rowIndex);
-        const tb = tableBody.childElementCount;
-        if (tb == 0){
-            dataTable.setAttribute('hidden', 'true');
-            formElements[9].removeAttribute('hidden');
+        row = td.parentElement.parentElement;
+        var Confirm = confirm(`Are you sure to delete ${row.cells[0].innerHTML} record`);
+        if (!Confirm){
+            return
+        }else{
+            dataTable.deleteRow(row.rowIndex);
+            const tb = tableBody.childElementCount;
+            if (tb == 0){
+                dataTable.setAttribute('hidden', 'true');
+                formElements[9].removeAttribute('hidden');
+            }
         }
-
-    }
-}
+    }  
+};
 
 //Update the selected row and reset the input form
 function updateRow(){
@@ -138,4 +137,4 @@ function updateRow(){
         submitBtn.removeAttribute('hidden');
         updateBtn.setAttribute('hidden', 'true');
         formElements[1].removeAttribute('style');
-}
+};
